@@ -176,9 +176,11 @@ afterEvaluate {
         }
         repositories {
             maven {
-                def snapshotRepo = "https://aws.oss.sonatype.org/content/repositories/snapshots"
-                def releaseRepo = "https://aws.oss.sonatype.org/"
-                url = version.endsWith('SNAPSHOT') ? snapshotRepo : releaseRepo
+                credentials {
+                    username = System.getenv('NEXUS_USER')
+                    password = System.getenv('NEXUS_PASSWORD')
+                }
+                url = 'https://nexus.eroad.io/content/repositories/releases/' 
             }
         }
     }
